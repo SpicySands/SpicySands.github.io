@@ -12,6 +12,6 @@
     - key: Email
       value: spicybeans1717@gmail.com
       url: "mailto:spicybeans1717+blog@gmail.com"
-#- key: Library
- # value: Listen Here
-   #url: /404.md
+- key: Library
+  value: Listen Here
+   url: /library/
