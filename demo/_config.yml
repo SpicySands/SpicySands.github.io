@@ -17,4 +17,5 @@ plugins:
 
 sass:
   sourcemap: never
-  
+
+  color_bg: black-1
