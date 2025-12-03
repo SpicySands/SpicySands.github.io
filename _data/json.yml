@@ -7,6 +7,11 @@
     - Through
     - Code
   typed: true
-- key: Library
-  value: Listen Here
-   url: /404.md
+- key: Contact
+  value:
+    - key: Email
+      value: spicybeans1717@gmail.com
+      url: "mailto:spicybeans1717@gmail.com"
+#- key: Library
+ # value: Listen Here
+   #url: /404.md
