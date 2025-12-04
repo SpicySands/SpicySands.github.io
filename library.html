@@ -3,24 +3,12 @@ layout: default
 title: library
 permalink: /library/
 ---
-<style>
-  #typed { display: none !important; }
-</style>
-
-<script>
-  // Disable typed.js on this page
-  if (window.Typed) {
-    window.Typed = function() {};
-  }
-</script>
-
-<script type="module" src="https://cdn.jsdelivr.net/npm/@strudel/embed@latest"></script>
 
 <h1>Strudel Library</h1>
 
 <h2>Track 01: first try</h2>
 <p><strong>Date:</strong> 12/2/25</p>
-{% raw %}
+<p><strong>Date:</strong> 12/2/25</p>
 <strudel-repl>// @title first try @by Dee
 setcpm(180 / 4)
 $:sound("<bd>*4")._scope()
@@ -31,4 +19,3 @@ $:note("<0 - 7 4 - 2 2 - 4 0 - 7 3 - 4 2- 3 0 - 7>*8").scale("d:minor").sound("g
 $:note("<1 2 2 3 1 1 2 3>").scale("d:minor").sound("gm_french_horn").gain(.5)._pianoroll()
 $:note("<<G#,B,D#> <A#,C#,E#> <F#,A#,C#> <B,D#,F#>>").slow(4).scale("d:minor").sound("gm_drawbar_organ").decay(5)._pianoroll()
 </strudel-repl>
-{% endraw %}
