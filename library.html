@@ -3,6 +3,16 @@ layout: default
 title: library
 permalink: /library/
 ---
+<style>
+  #typed { display: none !important; }
+</style>
+
+<script>
+  // Disable typed.js on this page
+  if (window.Typed) {
+    window.Typed = function() {};
+  }
+</script>
 
 #songs
 <script type="module" src="https://cdn.jsdelivr.net/npm/@strudel/embed@latest"></script>
