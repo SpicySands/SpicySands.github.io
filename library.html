@@ -21,9 +21,9 @@ permalink: /library/
     
     const code = await response.text();
     
-    // Create the strudel-repl element properly
+    // Try using setAttribute
     const strudelRepl = document.createElement('strudel-repl');
-    strudelRepl.textContent = code;
+    strudelRepl.setAttribute('code', code);
     
     const container = document.getElementById('strudel-track01');
     container.appendChild(strudelRepl);
