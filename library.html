@@ -10,7 +10,7 @@ permalink: /library/
   </div>
 </div>
 
-<div id="tracks-container"></div>
+<div id="tracks-list"></div>
 
 <script type="module">
   // List your track files here
@@ -20,42 +20,67 @@ permalink: /library/
     // { file: 'track02.txt', title: 'second track', date: '12/3/25' },
   ];
 
-  const container = document.getElementById('tracks-container');
+  const tracksList = document.getElementById('tracks-list');
 
-  for (const track of tracks) {
-    try {
-      // Create track info section
-      const trackInfo = document.createElement('div');
-      trackInfo.className = 'track-info ms';
-      trackInfo.innerHTML = `
-        <div id="json">
-          <div class="my ms">
-            <h2 class="track-title"><span class="key">"title"</span>: <span class="value">"${track.title}"</span>,</h2>
-            <p class="track-date"><span class="key">"date"</span>: <span class="value">"${track.date}"</span>,</p>
-            <p><span class="key">"listen"</span>: <span class="value">"below"</span></p>
-          </div>
-        </div>
-      `;
-      container.appendChild(trackInfo);
-
-      // Create strudel container
-      const strudelContainer = document.createElement('div');
-      strudelContainer.id = `strudel-${track.file.replace('.txt', '')}`;
-      container.appendChild(strudelContainer);
-
-      // Fetch and load the track
-      const url = `{{ "/assets/tracks/" | relative_url }}${track.file}`;
-      const response = await fetch(url);
+  for (let i = 0; i < tracks.length; i++) {
+    const track = tracks[i];
+    const trackId = `track-${i}`;
+    
+    // Create track entry in JSON style
+    const trackEntry = document.createElement('div');
+    trackEntry.className = 'my ms';
+    trackEntry.innerHTML = `
+      <span class="key">"${track.title}"</span>: {
+      <div class="ms">
+        <span class="key">"date"</span>: <span class="value">"${track.date}"</span>,<br>
+        <span class="key">"play"</span>: <span class="value"><a href="#" id="play-${trackId}" style="color: var(--oc-green-5);">"click to load"</a></span>
+      </div>
+      }${i < tracks.length - 1 ? ',' : ''}
+    `;
+    tracksList.appendChild(trackEntry);
+    
+    // Create container for Strudel player (hidden initially)
+    const strudelContainer = document.createElement('div');
+    strudelContainer.id = `strudel-${trackId}`;
+    strudelContainer.style.display = 'none';
+    strudelContainer.style.marginBottom = '30px';
+    tracksList.appendChild(strudelContainer);
+    
+    // Add click handler
+    document.getElementById(`play-${trackId}`).addEventListener('click', async (e) => {
+      e.preventDefault();
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      const container = document.getElementById(`strudel-${trackId}`);
+      
+      // If already loaded, just toggle visibility
+      if (container.innerHTML !== '') {
+        container.style.display = container.style.display === 'none' ? 'block' : 'none';
+        e.target.textContent = container.style.display === 'none' ? '"click to load"' : '"hide player"';
+        return;
       }
       
-      const code = await response.text();
-      const strudelRepl = document.createElement('strudel-repl');
-      strudelRepl.setAttribute('code', code);
-      
-      strudelContainer.appendChild(strudelRepl);
-      
-    } catch (error) {
-      console.error(`Error loading ${track.file}
+      // Load the track
+      try {
+        const url = `{{ "/assets/tracks/" | relative_url }}${track.file}`;
+        const response = await fetch(url);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const code = await response.text();
+        const strudelRepl = document.createElement('strudel-repl');
+        strudelRepl.setAttribute('code', code);
+        
+        container.appendChild(strudelRepl);
+        container.style.display = 'block';
+        e.target.textContent = '"hide player"';
+        
+      } catch (error) {
+        console.error(`Error loading ${track.file}:`, error);
+        container.innerHTML = `<p style="color: red;">Error loading track</p>`;
+        container.style.display = 'block';
+      }
+    });
+  }
+</script>
