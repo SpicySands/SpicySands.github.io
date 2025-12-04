@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="icon" type="image/x-icon" href="{{ 'assets/favicon.ico' | relative_url }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ 'assets/apple-touch-icon.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ 'assets/favicon-16x16.png' | relative_url }}">
+  <link rel="manifest" href="{{ 'assets/site.webmanifest' | relative_url }}">
+  <link rel="stylesheet" href="{{ 'assets/css/normalize.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ 'assets/css/open-color.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ 'assets/css/styles.css' | relative_url }}" />
   <script type="module" src="https://cdn.jsdelivr.net/npm/@strudel/embed@latest"></script>
   <style>
-    body {
-      font-family: monospace;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #1e1e1e;
-      color: #d4d4d4;
-    }
-    h1, h2 { color: #4ec9b0; }
-    a { color: #569cd6; }
+    /* Additional styles for Strudel */
     strudel-repl {
       display: block;
       margin: 20px 0;
       min-height: 500px;
+      border: 1px solid var(--oc-gray-7);
+      border-radius: 4px;
+    }
+    .track-info {
+      margin: 30px 0 10px 0;
+    }
+    .track-title {
+      color: var(--oc-green-5);
+      margin: 0;
+    }
+    .track-date {
+      color: var(--oc-gray-5);
+      font-size: 0.9em;
+      margin: 5px 0;
+    }
+    #json {
+      margin-bottom: 30px;
     }
   </style>
-  <script>
-    // Block typed.js completely
-    window.Typed = function() {};
-  </script>
 </head>
 <body>
-  <a href="{{ '/' | relative_url }}">← Back to Home</a>
-  {{ content }}
+  <main>
+    <div id="json">
+      <div class="my ms">
+        <span class="key">"library"</span>: <span class="value">"<a href="{{ '/' | relative_url }}">back to home</a>"</span>
+      </div>
+    </div>
+    {{ content }}
+  </main>
 </body>
 </html>
