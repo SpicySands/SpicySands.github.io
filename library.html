@@ -32,3 +32,31 @@ permalink: /library/
     console.error('Error:', error);
   }
 </script>
+
+<h2>Track 02: test</h2>
+<p><strong>Date:</strong> 12/3/25</p>
+
+<div id="strudel-track02"></div>
+
+<script type="module">
+  try {
+    const url = '{{ "/assets/tracks/track02.txt" | relative_url }}';
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const code = await response.text();
+    
+    // Try using setAttribute
+    const strudelRepl = document.createElement('strudel-repl');
+    strudelRepl.setAttribute('code', code);
+    
+    const container = document.getElementById('strudel-track02');
+    container.appendChild(strudelRepl);
+    
+  } catch (error) {
+    console.error('Error:', error);
+  }
+</script>
