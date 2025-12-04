@@ -6,21 +6,31 @@ permalink: /library/
 
 <div id="json">
   <div class="my ms">
-    <span class="key">"library"</span>: <span class="value">"<a href="{{ '/' | relative_url }}">back to home</a>"</span>
+    <span class="key">"library"</span>: <span class="value">"<a href="{{ '/' | relative_url }}">back to home</a>"</span>,
+  </div>
+  <div class="my ms">
+    <span class="key">"tracks"</span>: [
   </div>
 </div>
 
 <div id="tracks-list"></div>
 
+<div id="json">
+  <div class="my ms">
+    ]
+  </div>
+</div>
+
 <script type="module">
   // List your track files here
   const tracks = [
     { file: 'track01.txt', title: 'first try', date: '12/2/25' },
-    // Add more tracks here as you create them:
-    // { file: 'track02.txt', title: 'second track', date: '12/3/25' },
+    { file: 'track02.txt', title: 'second track', date: '12/3/25' },
+    // Add more tracks here as you create them
   ];
 
   const tracksList = document.getElementById('tracks-list');
+  const strudelInstances = {}; // Track loaded instances
 
   for (let i = 0; i < tracks.length; i++) {
     const track = tracks[i];
@@ -30,12 +40,15 @@ permalink: /library/
     const trackEntry = document.createElement('div');
     trackEntry.className = 'my ms';
     trackEntry.innerHTML = `
-      <span class="key">"${track.title}"</span>: {
       <div class="ms">
-        <span class="key">"date"</span>: <span class="value">"${track.date}"</span>,<br>
-        <span class="key">"play"</span>: <span class="value"><a href="#" id="play-${trackId}" style="color: var(--oc-green-5);">"click to load"</a></span>
+        {
+        <div class="ms">
+          <span class="key">"title"</span>: <span class="value">"${track.title}"</span>,<br>
+          <span class="key">"date"</span>: <span class="value">"${track.date}"</span>,<br>
+          <span class="key">"play"</span>: <span class="value"><a href="#" id="play-${trackId}" style="color: var(--oc-green-5);">"click to load"</a></span>
+        </div>
+        }${i < tracks.length - 1 ? ',' : ''}
       </div>
-      }${i < tracks.length - 1 ? ',' : ''}
     `;
     tracksList.appendChild(trackEntry);
     
@@ -51,15 +64,29 @@ permalink: /library/
       e.preventDefault();
       
       const container = document.getElementById(`strudel-${trackId}`);
+      const link = e.target;
       
-      // If already loaded, just toggle visibility
+      // If already loaded, toggle visibility and stop audio when hiding
       if (container.innerHTML !== '') {
-        container.style.display = container.style.display === 'none' ? 'block' : 'none';
-        e.target.textContent = container.style.display === 'none' ? '"click to load"' : '"hide player"';
+        if (container.style.display === 'none') {
+          container.style.display = 'block';
+          link.textContent = '"hide player"';
+        } else {
+          // Hide and try to stop audio
+          container.style.display = 'none';
+          link.textContent = '"click to load"';
+          
+          // Try to stop the audio by removing and recreating the element
+          const oldRepl = container.querySelector('strudel-repl');
+          if (oldRepl) {
+            oldRepl.remove();
+            strudelInstances[trackId] = null;
+          }
+        }
         return;
       }
       
-      // Load the track
+      // Load the track for the first time
       try {
         const url = `{{ "/assets/tracks/" | relative_url }}${track.file}`;
         const response = await fetch(url);
@@ -73,8 +100,9 @@ permalink: /library/
         strudelRepl.setAttribute('code', code);
         
         container.appendChild(strudelRepl);
+        strudelInstances[trackId] = strudelRepl;
         container.style.display = 'block';
-        e.target.textContent = '"hide player"';
+        link.textContent = '"hide player"';
         
       } catch (error) {
         console.error(`Error loading ${track.file}:`, error);
