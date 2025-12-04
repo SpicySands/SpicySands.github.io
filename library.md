@@ -5,11 +5,12 @@ permalink: /library/
 ---
 
 #songs
-[<script type="module" src="https://cdn.jsdelivr.net/npm/@strudel/embed@latest"></script>](https://cdn.jsdelivr.net/npm/@strudel/embed@1.1.1/embed.min.js)
+<script type="module" src="https://cdn.jsdelivr.net/npm/@strudel/embed@latest"></script>
 
 <h1>Strudel Library</h1>
 
-<h2>Example 1: First Attempt</h2>
+<h2>Track 01: first try</h2>
+<p><strong>Date:</strong> 12/2/25</p>
 <strudel-repl>
 // @title first try @by Dee
 setcpm(180/4)
