@@ -1,16 +1,54 @@
 ---
+import BaseLayout from "../layouts/baselayout.astro"
 
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>My Astro Site</h1>
-	</body>
-</html>
+
+<BaseLayout>
+<style>
+.cursor { animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+</style>
+<script>
+    var i = 0;
+    var txt = 'Making music through code.';
+    var speed = 100;
+
+    function typeWriter() {
+    if (i < txt.length) {
+        var demo = document.getElementById("demo");
+        var cursor = demo.querySelector('.cursor');
+            
+        demo.insertBefore(document.createTextNode(txt.charAt(i)), cursor);
+        i++;
+        setTimeout(typeWriter, speed);
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    typeWriter();
+});
+</script>
+<main>
+    <h1>SpicySands (Aka Dee)'s Music Blog-thing</h1>
+    <h2><p id="demo"><span class="cursor">▌</span></p></h2>
+
+</main>
+</BaseLayout>
+
+<style>
+    main {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        color: #69db7c;
+    }
+</style>
