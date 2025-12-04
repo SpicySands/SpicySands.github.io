@@ -5,13 +5,14 @@ permalink: /library/
 ---
 <h1>Strudel Library</h1>
 
-<h2>Track 01: {{ site.data.tracks.track01.title }}</h2>
-<p><strong>Date:</strong> {{ site.data.tracks.track01.date }}</p>
+<h2>Track 01: first try</h2>
+<p><strong>Date:</strong> 12/2/25</p>
 
 <div id="strudel-track01"></div>
 
 <script type="module">
-  const code = {{ site.data.tracks.track01.code | jsonify }};
+  const response = await fetch('{{ "/assets/tracks/track01.txt" | relative_url }}');
+  const code = await response.text();
   const container = document.getElementById('strudel-track01');
   container.innerHTML = `<strudel-repl>${code}</strudel-repl>`;
 </script>
