@@ -10,13 +10,7 @@ permalink: /library/
   </div>
   <div class="my ms">
     <span class="key">"tracks"</span>: [
-  </div>
-</div>
-
-<div id="tracks-list"></div>
-
-<div id="json">
-  <div class="my ms">
+    <div id="tracks-list"></div>
     ]
   </div>
 </div>
@@ -38,17 +32,15 @@ permalink: /library/
     
     // Create track entry in JSON style with proper indentation
     const trackEntry = document.createElement('div');
-    trackEntry.className = 'ms';
+    trackEntry.className = 'my ms';
     trackEntry.innerHTML = `
-      <div class="my">
-        {
-        <div class="ms">
-          <span class="key">"title"</span>: <span class="value">"${track.title}"</span>,<br>
-          <span class="key">"date"</span>: <span class="value">"${track.date}"</span>,<br>
-          <span class="key">"play"</span>: <span class="value"><a href="#" id="play-${trackId}" style="color: var(--oc-green-5);">"click to load"</a></span>
-        </div>
-        }${i < tracks.length - 1 ? ',' : ''}
+      {
+      <div class="ms">
+        <span class="key">"title"</span>: <span class="value">"${track.title}"</span>,<br>
+        <span class="key">"date"</span>: <span class="value">"${track.date}"</span>,<br>
+        <span class="key">"play"</span>: <span class="value"><a href="#" id="play-${trackId}" style="color: var(--oc-green-5);">"click to load"</a></span>
       </div>
+      }${i < tracks.length - 1 ? ',' : ''}
     `;
     tracksList.appendChild(trackEntry);
     
