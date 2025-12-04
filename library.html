@@ -3,68 +3,63 @@ layout: strudel
 title: library
 permalink: /library/
 ---
+
 <div id="json">
-  
-  <div class="track-info ms">
-    <h2 class="track-title"><span class="key">"title"</span>: <span class="value">"first try"</span>,</h2>
-    <p class="track-date"><span class="key">"date"</span>: <span class="value">"12/2/25"</span>,</p>
-    <p><span class="key">"listen"</span>: <span class="value">"below"</span></p>
+  <div class="my ms">
+    <span class="key">"library"</span>: <span class="value">"<a href="{{ '/' | relative_url }}">back to home</a>"</span>
   </div>
 </div>
 
-<div id="strudel-track01"></div>
+<div id="tracks-container"></div>
 
 <script type="module">
-  try {
-    const url = '{{ "/assets/tracks/track01.txt" | relative_url }}';
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  // List your track files here
+  const tracks = [
+    { file: 'track01.txt', title: 'first try', date: '12/2/25' },
+    { file: 'track02.txt', title: 'test', date: '12/3/25' },
+    // Add more tracks here as you create them:
+    // { file: 'track02.txt', title: 'second track', date: '12/3/25' },
+  ];
+
+  const container = document.getElementById('tracks-container');
+
+  for (const track of tracks) {
+    try {
+      // Create track info section
+      const trackInfo = document.createElement('div');
+      trackInfo.className = 'track-info ms';
+      trackInfo.innerHTML = `
+        <div id="json">
+          <div class="my ms">
+            <h2 class="track-title"><span class="key">"title"</span>: <span class="value">"${track.title}"</span>,</h2>
+            <p class="track-date"><span class="key">"date"</span>: <span class="value">"${track.date}"</span>,</p>
+            <p><span class="key">"listen"</span>: <span class="value">"below"</span></p>
+          </div>
+        </div>
+      `;
+      container.appendChild(trackInfo);
+
+      // Create strudel container
+      const strudelContainer = document.createElement('div');
+      strudelContainer.id = `strudel-${track.file.replace('.txt', '')}`;
+      container.appendChild(strudelContainer);
+
+      // Fetch and load the track
+      const url = `{{ "/assets/tracks/" | relative_url }}${track.file}`;
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const code = await response.text();
+      const strudelRepl = document.createElement('strudel-repl');
+      strudelRepl.setAttribute('code', code);
+      
+      strudelContainer.appendChild(strudelRepl);
+      
+    } catch (error) {
+      console.error(`Error loading ${track.file}:`, error);
     }
-    
-    const code = await response.text();
-    
-    // Try using setAttribute
-    const strudelRepl = document.createElement('strudel-repl');
-    strudelRepl.setAttribute('code', code);
-    
-    const container = document.getElementById('strudel-track01');
-    container.appendChild(strudelRepl);
-    
-  } catch (error) {
-    console.error('Error:', error);
-  }
-</script>
-
-<div class="track-info ms">
-    <h2 class="track-title"><span class="key">"title"</span>: <span class="value">"test"</span>,</h2>
-    <p class="track-date"><span class="key">"date"</span>: <span class="value">"12/3/25"</span>,</p>
-    <p><span class="key">"listen"</span>: <span class="value">"below"</span></p>
-  </div>
-</div>
-
-<div id="strudel-track02"></div>
-
-<script type="module">
-  try {
-    const url = '{{ "/assets/tracks/track02.txt" | relative_url }}';
-    const response = await fetch(url);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    const code = await response.text();
-    
-    // Try using setAttribute
-    const strudelRepl = document.createElement('strudel-repl');
-    strudelRepl.setAttribute('code', code);
-    
-    const container = document.getElementById('strudel-track02');
-    container.appendChild(strudelRepl);
-    
-  } catch (error) {
-    console.error('Error:', error);
   }
 </script>
