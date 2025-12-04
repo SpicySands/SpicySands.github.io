@@ -9,27 +9,26 @@ permalink: /library/
 <p><strong>Date:</strong> 12/2/25</p>
 
 <div id="strudel-track01"></div>
-<div id="error-message" style="color: red;"></div>
 
 <script type="module">
   try {
     const url = '{{ "/assets/tracks/track01.txt" | relative_url }}';
-    console.log('Fetching from:', url);
-    
     const response = await fetch(url);
-    console.log('Response status:', response.status);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
     const code = await response.text();
-    console.log('Code loaded:', code.substring(0, 50));
+    
+    // Create the strudel-repl element properly
+    const strudelRepl = document.createElement('strudel-repl');
+    strudelRepl.textContent = code;
     
     const container = document.getElementById('strudel-track01');
-    container.innerHTML = `<strudel-repl>${code}</strudel-repl>`;
+    container.appendChild(strudelRepl);
+    
   } catch (error) {
     console.error('Error:', error);
-    document.getElementById('error-message').textContent = 'Error loading track: ' + error.message;
   }
 </script>
