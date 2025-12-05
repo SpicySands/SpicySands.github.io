@@ -1,23 +1,9 @@
 ---
 import BaseLayout from "../layouts/baselayout.astro"
-
 ---
 
-<a href="/astro/about/">About</a>
 <BaseLayout>
-<style>
-.cursor { animation: blink 1s infinite;
-}
 
-@keyframes blink{
-    0%, 50% {
-        opacity: 1;
-    }
-    51%, 100% {
-        opacity: 0;
-    }
-}
-</style>
 <script>
     var i = 0;
     var txt = 'Making music through code.';
@@ -37,18 +23,45 @@ document.addEventListener('DOMContentLoaded', () => {
     typeWriter();
 });
 </script>
+
 <main>
     <h1>SpicySands (Aka Dee)'s Music Blog-thing</h1>
     <h2><p id="demo"><span class="cursor">▌</span></p></h2>
+    <div class="button-container">
+    <a href="/about/" class="button">About Me</a> 
+    <a href="/music/" class="button">Music</a>
+    </div>
 
 </main>
 </BaseLayout>
 
 <style>
+
     main {
         height: 100%;
         display: grid;
         place-items: center;
         color: #69db7c;
     }
+
+    .cursor { animation: blink 1s infinite;
+}
+
+    @keyframes blink{
+        0%, 50% {
+        opacity: 1;
+        }
+        51%, 100% {
+        opacity: 0;
+        }
+    }
+
+    .button-container{
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 2em;
+        justify-content: center;
+        margin-top: 2em;
+    }
+
 </style>
