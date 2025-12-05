@@ -1,11 +1,45 @@
-<a href="/">Home</a>
-<body>
-  <h1>My Astro Site</h1>
-  <h1>About Me</h1>
-  <h2>... and my new Astro site!</h2>
+---
+import BaseLayout from "../astro/layouts/baselayout.astro"
+---
 
 <BaseLayout>
 <main>
 
-  <p>This site will update as I complete more of the tutorial, so keep checking back and see how my journey is going!</p>
-</body>
+  <div class = "content">
+
+  <h1>About Me:</h1>
+  <h2>
+  <p>Hi! Im Dee. I started making music using Strudel REPL in December 2025 in order to distract myself from my job search.</p>
+  The height of my musical knowledge going into this is a single 101 music theory class taken in college.<br>
+  The music I make is self admittedly very basic as of writing. Hopefully I will improve over time (lol). Feel free to join me on this journey!
+  </h2>
+  <!-- maybe later lol <h3>Socials:</h3> -->
+  </div>
+  <a href="/astro" class="button">Return</a><BaseLayout>
+
+</main>
+</BaseLayout>
+
+<style>
+    main {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        color: #69db7c;
+    }
+
+    .content{
+        text-align: center;
+    }
+
+    h1 {
+        margin-top: 2em;
+        align-self: start;
+    }
+
+    h2 {
+        text-align: center;
+        max-width: 255ch;
+        padding: 2em;
+    }
+</style>
