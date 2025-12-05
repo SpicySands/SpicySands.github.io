@@ -6,16 +6,18 @@
         <meta name="generator" content={Astro.generator} />
         <title>Astro</title>
     </head>
+
     <body>
         <iframe
-            src="https://strudel.cc/#c2V0Y3BzKDEpCm4oIjwwIDEgMiAzIDQ%2BKjgiKS5zY2FsZSgnRzQgbWlub3InKQoucygiZ21fbGVhZF82X3ZvaWNlIikKLmNsaXAoc2luZS5yYW5nZSguMiwuOCkuc2xvdyg4KSkKLmp1eChyZXYpCi5yb29tKDIpCi5zb21ldGltZXMoYWRkKG5vdGUoIjEyIikpKQoubHBmKHBlcmxpbi5yYW5nZSgyMDAsMjAwMDApLnNsb3coNCkp"
+            src="https://strudel.cc/#Ly9AdGl0bGUgdGVzdCBAYnkgRGVlCmxldCBtdnMgPSBzbGlkZXIoMC4xMjUsMCwxKQoKY29uc3QgZGJhbmsgPSAicm9sYW5kdHI4MDgiCnNldENwbSgxODApCgovLyBEcnVtcwpjb25zdCBvcmJpdCA9IHN0YWNrKApzb3VuZCgiYmQoMSw0LDAuMSksIHNkKDwxIDIgMSAzPiw0LDEuOSkiKS5iYW5rKGRiYW5rKS5fcHVuY2hjYXJkKCksCnNvdW5kKCJoaCg8MSAyPiw0LDAuMSkiKS5zb21ldGltZXNCeSguMSwgeCA9PiB4LnBseSgiMiIpKS5fcHVuY2hjYXJkKCksCi8vIEQjRiNBIyBBI0MjRSMgQkQjRiMgRyNCRCMKLy8gTGVhZApub3RlKCI8IFtEIyxGIyxBI10oMTAsMTYsMCkgW0EjLEMjLEUjXSgxNiwxNiwwKSBbQixEIyxGI10oMTAsMTYsMCkgW0cjLEIsRCNdKDE2LDE2LDApPi80IikKLnRyYW5zKDM2KS5zb3VuZCgic3VwZXJzYXciKSwKCi8vIEJhc3MKbm90ZSgiPFtEIyxGIyxBI10gW0EjLEMjLEUjXSBbQixEIyxGI10gW0cjLEIsRCNdPi80IikudHJhbnMoLTM2KS5zb3VuZCgic3F1YXJlIikKKQpvcmJpdC5nYWluKG12cyk%3D"
             width="100%"
             height="100%"
         ></iframe>
         <div class="site-wrapper">
             <slot></slot>
         </div>
-        <style>
+
+        <style is global>
             * {
                 margin: 0px;
                 padding: 0px;
@@ -36,6 +38,21 @@
                 height: 100%;
                 background-color: hsla(210deg 11% 15% / 0.8);
                 z-index: 1;
+            }
+
+            .button {
+                display: grid;
+                top: 1em;
+                left: 1em;
+                padding: 0.5em 1em;
+                color: #69db7c;
+                border: 2px solid #69db7c;
+                border-radius: 0.5em;
+            }
+
+            .button:hover {
+                background-color: #69db7c;
+                color: #000;
             }
         </style>
     </body>
