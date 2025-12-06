@@ -4,20 +4,30 @@
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
+        <title>Spicysands</title>
+        <script src="https://unpkg.com/@strudel/embed@latest"></script>
     </head>
 
+    
     <body>
-        <iframe
-            src="https://strudel.cc/#Ly9AdGl0bGUgdGVzdCBAYnkgRGVlCmxldCBtdnMgPSBzbGlkZXIoMC4xMjUsMCwxKQoKY29uc3QgZGJhbmsgPSAicm9sYW5kdHI4MDgiCnNldENwbSgxODApCgovLyBEcnVtcwpjb25zdCBvcmJpdCA9IHN0YWNrKApzb3VuZCgiYmQoMSw0LDAuMSksIHNkKDwxIDIgMSAzPiw0LDEuOSkiKS5iYW5rKGRiYW5rKS5fcHVuY2hjYXJkKCksCnNvdW5kKCJoaCg8MSAyPiw0LDAuMSkiKS5zb21ldGltZXNCeSguMSwgeCA9PiB4LnBseSgiMiIpKS5fcHVuY2hjYXJkKCksCi8vIEQjRiNBIyBBI0MjRSMgQkQjRiMgRyNCRCMKLy8gTGVhZApub3RlKCI8IFtEIyxGIyxBI10oMTAsMTYsMCkgW0EjLEMjLEUjXSgxNiwxNiwwKSBbQixEIyxGI10oMTAsMTYsMCkgW0cjLEIsRCNdKDE2LDE2LDApPi80IikKLnRyYW5zKDM2KS5zb3VuZCgic3VwZXJzYXciKSwKCi8vIEJhc3MKbm90ZSgiPFtEIyxGIyxBI10gW0EjLEMjLEUjXSBbQixEIyxGI10gW0cjLEIsRCNdPi80IikudHJhbnMoLTM2KS5zb3VuZCgic3F1YXJlIikKKQpvcmJpdC5nYWluKG12cyk%3D"
-            width="100%"
-            height="100%"
-        ></iframe>
+            <strudel-repl 
+        id="strudel-layer"
+        >  <!--
+            setcps(1)
+n("<0 1 2 3 4>*8").scale('G4 minor')
+.s("gm_lead_6_voice")
+.clip(sine.range(.2,.8).slow(8))
+.jux(rev)
+.room(2)
+.sometimes(add(note("12")))
+.lpf(perlin.range(200,20000).slow(4))
+            -->
+        </strudel-repl>
         <div class="site-wrapper">
             <slot></slot>
         </div>
 
-        <style is global>
+        <style is: global>
             * {
                 margin: 0px;
                 padding: 0px;
@@ -27,11 +37,15 @@
                 height: 100%;
             }
 
-            iframe {
+            strudel-repl {
+                position: fixed;
                 border: none;
-                position: absolute;
-                inset: 0px;
                 z-index: -1;
+            }
+
+            iframe {
+                width: 100vw;
+                height: 100vh;
             }
 
             .site-wrapper {
