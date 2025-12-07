@@ -8,9 +8,16 @@ import BaseLayout from "../layouts/baselayout.astro"
   <h2><details>
   <summary>Humble beginings</summary>
   <div class="song-folder">
-  <p>First Attempt <button class="button" data-id="change-code" data-file = "firstattempt.txt">load</button></p> 
-  <p>Test <button class="button" data-id="change-code" data-file = "test.txt" >load</button></p>
-  <p>Arrangement Test <button class="button" data-id="change-code" data-file ="arrangementtest.txt">load</button></p>
+    <div class="song-element">
+        <p>First Attempt <button class="button" data-id="change-code" data-file = "firstattempt.txt">load</button></p> 
+    </div>
+    <div class="song-element">
+        <p>Test <button class="button" data-id="change-code" data-file = "test.txt" >load</button></p>
+    </div>
+    <div class="song-element">
+        <p>Arrangement Test <button class="button" data-id="change-code" data-file ="arrangementtest.txt">load</button></p>
+    </div>
+
   </h2>
   </div>
   <a href={`${import.meta.env.BASE_URL}`} class="button">Return</a>
@@ -66,6 +73,11 @@ import BaseLayout from "../layouts/baselayout.astro"
     .song-folder {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 1em;
+    }
+
+    .song-element{
+        display: grid;
         gap: 1em;
     }
 </style>
