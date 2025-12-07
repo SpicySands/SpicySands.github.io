@@ -3,23 +3,40 @@ import BaseLayout from "../layouts/baselayout.astro"
 ---
 <BaseLayout>
 <main>
-
   <div class = "content">
-
   <h1>Music:</h1>
   <h2><details>
   <summary>Humble beginings</summary>
   <div class="song-folder">
-  <p>First Attempt <button class="play-btn" data-url="https://strudel.cc/#Ly8gQHRpdGxlIGZpcnN0IGF0dGVtcHQgQGJ5IERlZQpzZXRjcG0oMTgwIC8gNCkKbGV0IG12cyA9IHNsaWRlcigwLjEyNSwwLDEpCgpjb25zdCBvcmJpdCA9IHN0YWNrKApzb3VuZCgiPGJkPio0IikuX3Njb3BlKCksIC8vIEZvdXIgb24gdGhlIEZsb29yCgpub3RlKCI8MCAtIDcgNSAtIDMgMiAtIDQgMCAtIDcgNCAtIDIgMi0gMyAwIC0gNz4qOCIpLnNjYWxlKCJkOm1pbm9yIikKICAuc291bmQoImdtX3N5bnRoX2Jhc3NfMSIpLnRyYW5zKC0yNCkuZGVjYXkoLjgpLl9zY29wZSgpLApub3RlKCI8MCAtIDcgNCAtIDIgMiAtIDQgMCAtIDcgMyAtIDQgMi0gMyAwIC0gNz4qOCIpLnNjYWxlKCJkOm1pbm9yIikKICAuc291bmQoImdtX3N5bnRoX2Jhc3NfMiIpLnRyYW5zKC0yNCkuX3Njb3BlKCksLy8gYmFzcwoKbm90ZSgiPDAgLSA3IDUgLSAzIDIgLSA0IDAgLSA3IDQgLSAyIDItIDMgMCAtIDc%2BKjgiKS5zY2FsZSgiZDptaW5vciIpCiAgLnNvdW5kKCJnbV9zeW50aF9icmFzc18xIikuX3BpYW5vcm9sbCgpLAoKbm90ZSgiPDAgLSA3IDQgLSAyIDIgLSA0IDAgLSA3IDMgLSA0IDItIDMgMCAtIDc%2BKjgiKS5zY2FsZSgiZDptaW5vciIpCiAgLnNvdW5kKCJnbV9zeW50aF9icmFzc18yIikudHJhbnMoMjQpLl9waWFub3JvbGwoKSwKbm90ZSgiPDEgMiAyIDMgMSAxIDIgMz4iKS5zY2FsZSgiZDptaW5vciIpCiAgLnNvdW5kKCJnbV9mcmVuY2hfaG9ybiIpLmdhaW4oLjUpLl9waWFub3JvbGwoKSwKICAKbm90ZSgiPDxHIyxCLEQjPiA8QSMsQyMsRSM%2BIDxGIyxBIyxDIz4gPEIsRCMsRiM%2BPiIpLnNsb3coNCkuc2NhbGUoImQ6bWlub3IiKQogIC5zb3VuZCgiZ21fZHJhd2Jhcl9vcmdhbiIpLmRlY2F5KDUpLl9waWFub3JvbGwoKQogICkKb3JiaXQucG9zdGdhaW4obXZzKQ%3D%3D">Play</button></p> 
-  <p>Test <button class="play-btn" data-url="https://strudel.cc/#Ly9AdGl0bGUgdGVzdCBAYnkgRGVlCmxldCBtdnMgPSBzbGlkZXIoMC4xMjUsMCwxKQoKY29uc3QgZGJhbmsgPSAicm9sYW5kdHI4MDgiCnNldENwbSgxODApCgovLyBEcnVtcwpjb25zdCBvcmJpdCA9IHN0YWNrKApzb3VuZCgiYmQoMSw0LDAuMSksIHNkKDwxIDIgMSAzPiw0LDEuOSkiKS5iYW5rKGRiYW5rKS5fcHVuY2hjYXJkKCksCnNvdW5kKCJoaCg8MSAyPiw0LDAuMSkiKS5zb21ldGltZXNCeSguMSwgeCA9PiB4LnBseSgiMiIpKS5fcHVuY2hjYXJkKCksCi8vIEQjRiNBIyBBI0MjRSMgQkQjRiMgRyNCRCMKLy8gTGVhZApub3RlKCI8IFtEIyxGIyxBI10oMTAsMTYsMCkgW0EjLEMjLEUjXSgxNiwxNiwwKSBbQixEIyxGI10oMTAsMTYsMCkgW0cjLEIsRCNdKDE2LDE2LDApPi80IikKLnRyYW5zKDM2KS5zb3VuZCgic3VwZXJzYXciKSwKCi8vIEJhc3MKbm90ZSgiPFtEIyxGIyxBI10gW0EjLEMjLEUjXSBbQixEIyxGI10gW0cjLEIsRCNdPi80IikudHJhbnMoLTM2KS5zb3VuZCgic3F1YXJlIikKKQpvcmJpdC5wb3N0Z2FpbihtdnMp3">Play</button></p>
-  <p>Arrangement Test <button class="play-btn" data-url="https://strudel.cc/#Ly9AdGl0bGUgYXJyYW5nZW1lbnQgdGVzdCBAYnkgRGVlCgpzYW1wbGVzKCdnaXRodWI6eWF4dS9jbGVhbi1icmVha3MnKQoKbGV0IG12cyA9IHNsaWRlcigwLjA1NywwLDEpCnNldGNwbSgxODApCmNvbnN0IG9yYml0ID0gc3RhY2soCgphcnJhbmdlKFszMiwgc291bmQoImJkKDEsNCwwKSIpXSxbMTYsIHNvdW5kKCJiZCgyLDYsMCkiKV0pLAphcnJhbmdlKFszMiwgc291bmQoImFtZW4iKS5zcGxpY2UoMTYsICI8MSAyIDMgNCA1IDYgNyA4IDkgMTAgMTEgMTIgMTMgMTQgMTU%2BIikKICAuYWxtb3N0TmV2ZXIobXVsKHNwZWVkKCItMSIpKSkuY3V0KDEpXSwKICAgICAgWzE2LCBzb3VuZCgiYW1lbiIpLnNwbGljZSgxNiwgIjwxMCAxMSAxMj4iKQogIC5hbG1vc3ROZXZlcihtdWwoc3BlZWQoIi0xIikpKS5jdXQoMSldICkKKQpvcmJpdC5wb3N0Z2FpbihtdnMp">Play</button></p>
+  <p>First Attempt <button class="button" data-id="change-code" data-file = "firstattempt.txt">load</button></p> 
+  <p>Test <button class="button" data-id="change-code" data-file = "test.txt" >load</button></p>
+  <p>Arrangement Test <button class="button" data-id="change-code" data-file ="arrangementtest.txt">load</button></p>
   </h2>
   </div>
-  <a href="/astro" class="button">Return</a><BaseLayout>
+  <a href="/astro" class="button">Return</a>
   </div>
+
+  <script>
+    const playbuttons = document.querySelectorAll('button[data-id ="change-code"]');
+    playbuttons.forEach(button => {
+        button.addEventListener("click", async () => {
+
+        console.log("clicked:" + button.dataset.file );
+        if(button.dataset.file != undefined){
+            const repl = document.getElementById("strudel-layer");
+            const response = await fetch("/songs/" + button.dataset.file);
+            const newCode = await response.text();
+            repl.editor.setCode(newCode);
+        }
+        })
+    });
+</script>
 
 </main>
 </BaseLayout>
+
+
+
 
 
 <style>
