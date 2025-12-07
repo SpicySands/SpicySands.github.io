@@ -2,7 +2,7 @@
     
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/astro/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>Spicysands</title>
@@ -44,9 +44,11 @@ orbit.postgain(mvs)
             mutations.forEach((mutation) => {
                 mutation.addedNodes.forEach((node) => {
                 // Check if it's the Strudel wrapper or has cm-editor
-                if (node.querySelector('.cm-editor') || node.classList.contains('cm-editor')) {
-                    node.style.display = 'none'; // Hide immediately
-                    console.log('Hid Strudel editor immediately');
+                if (node.nodeType === 1 && node.querySelector) {
+                    if (node.querySelector('.cm-editor') || node.classList.contains('cm-editor')) {
+                        node.style.display = 'none'; // Hide immediately
+                        console.log('Hid Strudel editor immediately');
+                    }
                 }
                 });
             });
