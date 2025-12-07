@@ -8,13 +8,13 @@ import BaseLayout from "../layouts/baselayout.astro"
   <h2><details>
   <summary>Humble beginings</summary>
   <div class="song-folder">
-    <div class="song-element">
+    <div class="song">
         <p>First Attempt <button class="button" data-id="change-code" data-file = "firstattempt.txt">load</button></p> 
     </div>
-    <div class="song-element">
+    <div class="song">
         <p>Test <button class="button" data-id="change-code" data-file = "test.txt" >load</button></p>
     </div>
-    <div class="song-element">
+    <div class="song">
         <p>Arrangement Test <button class="button" data-id="change-code" data-file ="arrangementtest.txt">load</button></p>
     </div>
   </div>
@@ -75,15 +75,14 @@ import BaseLayout from "../layouts/baselayout.astro"
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         align-items: start; 
-        margin: 0 auto;
-        width: fit-content;
     }
 
-    .song-element{
+    .song{
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;
         align-items: center;
+        justify-content: start;
         gap: 1em;
         height: 100%;
     }
