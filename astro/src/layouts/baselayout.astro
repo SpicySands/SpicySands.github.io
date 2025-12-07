@@ -1,59 +1,167 @@
 <html lang="en">
+    
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/astro/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
+        <title>Spicysands</title>
     </head>
 
+    
     <body>
-        <iframe
-            src="https://strudel.cc/#Ly9AdGl0bGUgdGVzdCBAYnkgRGVlCmxldCBtdnMgPSBzbGlkZXIoMC4xMjUsMCwxKQoKY29uc3QgZGJhbmsgPSAicm9sYW5kdHI4MDgiCnNldENwbSgxODApCgovLyBEcnVtcwpjb25zdCBvcmJpdCA9IHN0YWNrKApzb3VuZCgiYmQoMSw0LDAuMSksIHNkKDwxIDIgMSAzPiw0LDEuOSkiKS5iYW5rKGRiYW5rKS5fcHVuY2hjYXJkKCksCnNvdW5kKCJoaCg8MSAyPiw0LDAuMSkiKS5zb21ldGltZXNCeSguMSwgeCA9PiB4LnBseSgiMiIpKS5fcHVuY2hjYXJkKCksCi8vIEQjRiNBIyBBI0MjRSMgQkQjRiMgRyNCRCMKLy8gTGVhZApub3RlKCI8IFtEIyxGIyxBI10oMTAsMTYsMCkgW0EjLEMjLEUjXSgxNiwxNiwwKSBbQixEIyxGI10oMTAsMTYsMCkgW0cjLEIsRCNdKDE2LDE2LDApPi80IikKLnRyYW5zKDM2KS5zb3VuZCgic3VwZXJzYXciKSwKCi8vIEJhc3MKbm90ZSgiPFtEIyxGIyxBI10gW0EjLEMjLEUjXSBbQixEIyxGI10gW0cjLEIsRCNdPi80IikudHJhbnMoLTM2KS5zb3VuZCgic3F1YXJlIikKKQpvcmJpdC5nYWluKG12cyk%3D"
-            width="100%"
-            height="100%"
-        ></iframe>
+        <div class="black-box"></div>
+        <strudel-editor id="strudel-layer">
+        <!--//@title test @by Dee
+let mvs = slider(0.125,0,1)
+
+const dbank = "rolandtr808"
+setCpm(180/4)
+
+// Drums
+const orbit = stack(
+sound("<bd(1,4,0.1), sd(<1 2 1 3>,4,1.9)> * 4").bank(dbank)._punchcard(),
+sound("<hh(<1 2>,4,0.1)>*4").sometimesBy(.1, x => x.ply("2"))._punchcard(),
+
+// Lead
+note("< [D#,F#,A#](10,16,0) [A#,C#,E#](16,16,0) [B,D#,F#](10,16,0) [G#,B,D#](16,16,0)>4")
+.trans(36).sound("supersaw"),
+
+// Bass
+note("<[D#,F#,A#] [A#,C#,E#] [B,D#,F#] [G#,B,D#]>").trans(-36).sound("square")
+)
+orbit.postgain(mvs)
+        --> 
+        </strudel-editor>
+        <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const blackBox = document.querySelector('.black-box');
+        const strudelLayer = document.getElementById('strudel-layer');
+        
+        // Set up MutationObserver BEFORE loading Strudel
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                // Check if it's the Strudel wrapper or has cm-editor
+                if (node.querySelector('.cm-editor') || node.classList.contains('cm-editor')) {
+                    node.style.display = 'none'; // Hide immediately
+                    console.log('Hid Strudel editor immediately');
+                }
+                });
+            });
+        });
+  
+        observer.observe(document.body, { childList: true, subtree: true });
+  
+        // NOW load Strudel
+        const strudelScript = document.createElement('script');
+        strudelScript.src = 'https://unpkg.com/@strudel/repl@latest';
+        blackBox.appendChild(strudelScript);
+        strudelScript.onload = () => {
+            setTimeout(() => {
+        
+                const cmEditorDiv = document.querySelector('.cm-editor');
+        
+                if (cmEditorDiv && strudelLayer) {
+                    const editorWrapper = cmEditorDiv.parentElement;
+            
+                    if (editorWrapper) {
+                        observer.disconnect();
+                        // Move the entire wrapper into strudel-layer
+                        strudelLayer.appendChild(editorWrapper);
+                        // Apply CSS to the editor wrapper
+                        editorWrapper.style.width = '100%';
+                        editorWrapper.style.height = '100%';
+                        editorWrapper.style.zindex = '-1';
+                        editorWrapper.style.display = 'block';
+
+                        // Apply CSS to the cm-editor
+                        cmEditorDiv.style.width = '100%';
+                        cmEditorDiv.style.height = '100%';
+                        cmEditorDiv.style.zindex = '-1';
+                        cmEditorDiv.style.display = 'block';
+
+
+                
+                        // Apply to the scroller
+                        const scroller = cmEditorDiv.querySelector('.cm-scroller');
+                        if (scroller) {
+                            scroller.style.height = '100%';
+                        }
+                        console.log('Moved Strudel editor into #strudel-layer');
+                    }  
+                }
+            }, 10); // Give Strudel time to initialize
+        blackBox.remove();
+        }});
+        </script>
+
         <div class="site-wrapper">
             <slot></slot>
-        </div>
+        </div>         
 
-        <style is global>
-            * {
-                margin: 0px;
-                padding: 0px;
-                box-sizing: border-box;
-            }
-            html, body {
-                height: 100%;
-            }
-
-            iframe {
-                border: none;
-                position: absolute;
-                inset: 0px;
-                z-index: -1;
-            }
-
-            .site-wrapper {
-                height: 100%;
-                background-color: hsla(210deg 11% 15% / 0.8);
-                z-index: 1;
-            }
-
-            .button {
-                display: grid;
-                top: 1em;
-                left: 1em;
-                padding: 0.5em 1em;
-                color: #69db7c;
-                border: 2px solid #69db7c;
-                border-radius: 0.5em;
-            }
-
-            .button:hover {
-                background-color: #69db7c;
-                color: #000;
-            }
-        </style>
     </body>
+
+    <style is: global>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        
+        .black-box {
+            position: absolute;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #222;
+            zindex 2;
+        }
+
+        html{
+            height: 100%;
+            position: relative;
+        }
+
+        body {
+            height: 100%;
+            position: relative;
+            background: #222;
+        }
+
+        strudel-editor {
+            position:fixed;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: -1;
+        }
+ 
+        .site-wrapper {
+            position:fixed;
+            height: 100%;
+            width: 100%;
+            background-color: hsla(210deg 11% 15% / 0.8);
+            z-index: 3;
+        }
+
+        .button {
+            display: grid;
+            top: 1em;
+            left: 1em;
+            padding: 0.5em 1em;
+            color: #69db7c;
+            border: 2px solid #69db7c;
+            border-radius: 0.5em;
+            background: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #69db7c;
+            color: #000;
+        }
+    </style>
 </html>
