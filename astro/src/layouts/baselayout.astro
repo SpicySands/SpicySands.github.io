@@ -2,14 +2,12 @@
 import { ViewTransitions } from 'astro:transitions';
 ---
 <html lang="en">
-    
     <head>
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>Spicysands</title>
-    <ViewTransitions />
     </head>
 
     
@@ -37,8 +35,9 @@ note("<[D#,F#,A#] [A#,C#,E#] [B,D#,F#] [G#,B,D#]>").trans(-36).sound("square")
 orbit.postgain(mvs)
         --> 
         </strudel-editor>
-        <script>
 
+
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
         const blackBox = document.querySelector('.black-box');
         const strudelLayer = document.getElementById('strudel-layer');
@@ -71,9 +70,9 @@ orbit.postgain(mvs)
         
                 if (cmEditorDiv && strudelLayer) {
                     const editorWrapper = cmEditorDiv.parentElement;
-            
+                    observer.disconnect();
+
                     if (editorWrapper) {
-                        observer.disconnect();
                         // Move the entire wrapper into strudel-layer
                         strudelLayer.appendChild(editorWrapper);
                         // Apply CSS to the editor wrapper
