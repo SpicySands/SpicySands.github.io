@@ -24,8 +24,8 @@ import BaseLayout from "../layouts/baselayout.astro"
         console.log("clicked:" + button.dataset.file );
         if(button.dataset.file != undefined){
             const repl = document.getElementById("strudel-layer");
-            console.log("retriving from:" + "/astro/public/songs/" + button.dataset.file);
-            const response = await fetch("/astro/public/songs/" + button.dataset.file);
+            console.log("retriving from:" + "/astro/songs/" + button.dataset.file);
+            const response = await fetch("/astro/songs/" + button.dataset.file);
             const newCode = await response.text();
             repl.editor.setCode(newCode);
         }
